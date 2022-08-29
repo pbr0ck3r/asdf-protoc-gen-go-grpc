@@ -3,7 +3,7 @@
 # asdf-protoc-gen-go-grpc [![Build](https://github.com/pbr0ck3r/asdf-protoc-gen-go-grpc/actions/workflows/build.yml/badge.svg)](https://github.com/pbr0ck3r/asdf-protoc-gen-go-grpc/actions/workflows/build.yml) [![Lint](https://github.com/pbr0ck3r/asdf-protoc-gen-go-grpc/actions/workflows/lint.yml/badge.svg)](https://github.com/pbr0ck3r/asdf-protoc-gen-go-grpc/actions/workflows/lint.yml)
 
 
-[protoc-gen-go-grpc](https://github.com/pbr0ck3r/protoc-gen-go-grpc) plugin for the [asdf version manager](https://asdf-vm.com).
+[protoc-gen-go-grpc](https://github.com/grpc/grpc-go/) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
@@ -19,6 +19,7 @@
 **TODO: adapt this section**
 
 - `bash`, `curl`, `tar`: generic POSIX utilities.
+- `go`: `brew install go`
 - `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
 
 # Install
