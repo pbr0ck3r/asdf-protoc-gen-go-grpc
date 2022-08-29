@@ -19,5 +19,10 @@ download_release "$ASDF_INSTALL_VERSION" "$release_file"
 #  Extract contents of tar.gz file into the download directory
 tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" --strip-components=1 || fail "Could not extract $release_file"
 
+# Build protoc-gen-go-grpc binary
+pushd "$ASDF_DOWNLOAD_PATH"/cmd/$TOOL_NAME >/dev/null 2>&1 || exit 1
+go build || fail "Could not build $TOOL_NAME from $ASDF_DOWNLOAD_PATH"
+popd >/dev/null 2>&1 || exit 1
+
 # Remove the tar.gz file since we don't need to keep it
 rm "$release_file"

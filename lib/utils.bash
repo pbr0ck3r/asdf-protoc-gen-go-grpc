@@ -2,8 +2,7 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for protoc-gen-go-grpc.
-GH_REPO="https://github.com/pbr0ck3r/protoc-gen-go-grpc"
+GH_REPO="https://github.com/grpc/grpc-go/"
 TOOL_NAME="protoc-gen-go-grpc"
 TOOL_TEST="protoc-gen-go-grpc --version"
 
@@ -26,7 +25,7 @@ sort_versions() {
 
 list_github_tags() {
   git ls-remote --tags --refs "$GH_REPO" |
-    grep -o 'refs/tags/.*' | cut -d/ -f3- |
+    grep -o 'refs/tags/cmd/protoc-gen-go-grpc/.*' | cut -d/ -f3- |
     sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
 }
 
@@ -41,8 +40,8 @@ download_release() {
   version="$1"
   filename="$2"
 
-  # TODO: Adapt the release URL convention for protoc-gen-go-grpc
-  url="$GH_REPO/archive/v${version}.tar.gz"
+  # TODO: this is based on ref/tag for cmd/protoc-gen-go-grpc
+  url="$GH_REPO/archive/cmd/protoc-gen-go-grpc/v${version}.tar.gz"
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
@@ -59,9 +58,9 @@ install_version() {
 
   (
     mkdir -p "$install_path"
-    cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+    # protoc-gen-go-grpc is built in /bin/download
+    cp -r "$ASDF_DOWNLOAD_PATH"/cmd/$TOOL_NAME/$TOOL_NAME "$install_path"
 
-    # TODO: Assert protoc-gen-go-grpc executable exists.
     local tool_cmd
     tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
     test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
