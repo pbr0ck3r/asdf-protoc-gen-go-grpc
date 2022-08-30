@@ -25,7 +25,7 @@ sort_versions() {
 
 list_github_tags() {
   git ls-remote --tags --refs "$GH_REPO" |
-    grep -o 'refs/tags/.*' | cut -d/ -f3- |
+    grep -o 'refs/tags/cmd/protoc-gen-go-grpc/.*' | cut -d/ -f3- |
     sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
 }
 
@@ -40,7 +40,7 @@ download_release() {
   version="$1"
   filename="$2"
 
-  url="$GH_REPO/archive/v${version}.tar.gz"
+  url="$GH_REPO/archive/cmd/protoc-gen-go-grpc/v${version}.tar.gz"
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"

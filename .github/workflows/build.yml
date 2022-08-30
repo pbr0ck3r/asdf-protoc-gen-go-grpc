@@ -20,4 +20,4 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: protoc-gen-go-grpc --version
-          version: 1.49.0
+          version: 1.2.0
