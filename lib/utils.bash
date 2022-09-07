@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-GH_REPO="https://github.com/grpc/grpc-go/"
+GH_REPO="https://github.com/grpc/grpc-go"
 TOOL_NAME="protoc-gen-go-grpc"
 TOOL_TEST="protoc-gen-go-grpc --version"
 
