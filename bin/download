@@ -4,8 +4,9 @@ set -euo pipefail
 
 current_script_path=${BASH_SOURCE[0]}
 plugin_dir=$(dirname "$(dirname "$current_script_path")")
+echo "plugin_dir: $plugin_dir"
 
-# shellcheck source=../lib/utils.bash
+# shellcheck source=./lib/utils.bash
 source "${plugin_dir}/lib/utils.bash"
 
 mkdir -p "$ASDF_DOWNLOAD_PATH"
@@ -20,7 +21,7 @@ download_release "$ASDF_INSTALL_VERSION" "$release_file"
 tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" --strip-components=1 || fail "Could not extract $release_file"
 
 # Build protoc-gen-go-grpc binary
-pushd "$ASDF_DOWNLOAD_PATH"/cmd/$TOOL_NAME >/dev/null 2>&1 || exit 1
+pushd "$ASDF_DOWNLOAD_PATH"/cmd/"$TOOL_NAME" >/dev/null 2>&1 || exit 1
 go build || fail "Could not build $TOOL_NAME from $ASDF_DOWNLOAD_PATH"
 popd >/dev/null 2>&1 || exit 1
 
