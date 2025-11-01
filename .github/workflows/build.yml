@@ -17,7 +17,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: asdf_plugin_test
-        uses: asdf-vm/actions/plugin-test@v1
+        uses: asdf-vm/actions/plugin-test@v4
         with:
           command: protoc-gen-go-grpc --version
+          gitref: main
           version: 1.2.0
